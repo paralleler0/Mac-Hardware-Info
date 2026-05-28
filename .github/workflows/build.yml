@@ -9,9 +9,6 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Find all Package.swift files
-        run: find . -name Package.swift
-        
       - name: Checkout
         uses: actions/checkout@v4
 
