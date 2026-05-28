@@ -1,4 +1,4 @@
-name: Build 
+name: Build
 
 on:
   workflow_dispatch:
@@ -13,13 +13,17 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Release Binary
-        run: swift build -c release
+        run: |
+          cd "Mac Hardware Info"
+          swift build -c release
 
       - name: Run Binary (test)
-        run: .build/release/macinfo
+        run: |
+          cd "Mac Hardware Info"
+          .build/release/macinfo
 
       - name: Upload CLI Binary
         uses: actions/upload-artifact@v4
         with:
           name: macinfo-binary
-          path: .build/release/macinfo
+          path: Mac Hardware Info/.build/release/macinfo
