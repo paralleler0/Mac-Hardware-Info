@@ -1,4 +1,4 @@
-name: Build DMG
+name: Build 
 
 on:
   workflow_dispatch:
@@ -9,29 +9,17 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Build Release App
-        run: |
-          xcodebuild \
-            -scheme "Mac Hardware Info" \
-            -configuration Release \
-            -derivedDataPath build \
-            build
+      - name: Build Release Binary
+        run: swift build -c release
 
-      - name: Create DMG
-        run: |
-          mkdir -p dmg
-          cp -R build/Build/Products/Release/*.app dmg/
+      - name: Run Binary (test)
+        run: .build/release/macinfo
 
-          hdiutil create \
-            -volname "Mac Hardware Info" \
-            -srcfolder dmg \
-            -ov -format UDZO \
-            MacHardwareInfo.dmg
-
-      - name: Upload DMG
+      - name: Upload CLI Binary
         uses: actions/upload-artifact@v4
         with:
-          name: MacHardwareInfo
-          path: MacHardwareInfo.dmg
+          name: macinfo-binary
+          path: .build/release/macinfo
