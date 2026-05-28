@@ -1,31 +1,31 @@
 import Foundation
 
-// MARK: - Same logic as ViewController.getData()
+// MARK: - Build same payload as GUI
 
-func getDataCLI(preventSharing: Bool) -> Data {
+let hw = getHwInfo()
+
+// This matches ViewController.getData()
+func buildPayload(preventSharing: Bool) -> Data {
     var data = "OABS".data(using: .utf8)!
     data.append(preventSharing ? 1 : 0)
-    data.append(try! getHwInfo().serializedData())
+    data.append(try! hw.serializedData())
     return data
 }
 
-// MARK: - MAIN CLI OUTPUT (replaces GUI button action)
+// MARK: - CLI logic (replaces button action)
 
-let preventSharing = true   // same as toggle in GUI
+let preventSharing = true
 
-let outputData = getDataCLI(preventSharing: preventSharing)
-let output = outputData.base64EncodedString()
+let payload = buildPayload(preventSharing: preventSharing)
+let output = payload.base64EncodedString()
 
 print("=== Mac Hardware Info CLI ===")
 print("Prevent Sharing:", preventSharing)
 
-print("\n=== Activation Payload (Base64) ===")
+print("\n=== Base64 Activation Payload ===")
 print(output)
 
-// MARK: - mimic GUI “Copied!” behavior
 print("\nCopied!")
 
-// mimic GUI delay reset
 Thread.sleep(forTimeInterval: 3)
-
 print("Ready for next code")
