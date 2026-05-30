@@ -1,2 +1,1 @@
-ARE YOU HAPPY?
-jk helps me too
+This is Macinfo, a port of Openbubbles-app/Mac-Hardware-Info for CLI!
