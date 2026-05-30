@@ -18,6 +18,6 @@ jobs:
           swift build -c release --arch arm64 --arch x86_64
 
       - name: Run Binary (test)
-        run: |
-          cd "Mac Hardware Info"
+        run: .build/apple/Products/Release/macinfo
+          
           
