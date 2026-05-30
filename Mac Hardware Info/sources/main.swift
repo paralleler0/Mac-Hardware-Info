@@ -1,7 +1,5 @@
 import Foundation
 
-// MARK: - Build same payload as GUI
-
 let hw = getHwInfo()
 
 // This matches ViewController.getData()
@@ -12,20 +10,28 @@ func buildPayload(preventSharing: Bool) -> Data {
     return data
 }
 
-// MARK: - CLI logic (replaces button action)
-
-let preventSharing = true
-
 let payload = buildPayload(preventSharing: preventSharing)
 let output = payload.base64EncodedString()
 
-print("=== Mac Hardware Info CLI ===")
-print("Prevent Sharing:", preventSharing)
+import Foundation
 
-print("\n=== Base64 Activation Payload ===")
+var preventSharing = false
+
+print("Do you want to prevent sharing? (yes/no): ", terminator: "")
+
+if let input = readLine()?.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) {
+
+    if input == "yes" || input == "y" {
+        preventSharing = true
+    } else if input == "no" || input == "n" {
+        preventSharing = false
+    } else {
+        print("Invalid input. Defaulting to 'no'")
+        preventSharing = false
+    }
+    
+}
+
+print("Paste this code into Openbubbles")
+
 print(output)
-
-print("\nCopied!")
-
-Thread.sleep(forTimeInterval: 3)
-print("Ready for next code")
