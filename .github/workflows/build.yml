@@ -20,5 +20,4 @@ jobs:
       - name: Test
         run: |
           cd "Mac Hardware Info"
-          .build/release/macinfo
-          
+          .build/apple/Products/Release/macinfo
