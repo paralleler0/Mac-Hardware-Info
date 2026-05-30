@@ -21,3 +21,9 @@ jobs:
         run: |
           cd "Mac Hardware Info"
           .build/apple/Products/Release/macinfo
+          
+      - name: Save Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Mac-hardware-info
+          path: Mac Hardware Info/.build/apple/Products/Release/macinfo
