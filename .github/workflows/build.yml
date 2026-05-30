@@ -15,15 +15,9 @@ jobs:
       - name: Build Release Binary
         run: |
           cd "Mac Hardware Info"
-          swift build -c release
+          swift build -c release --arch arm64 --arch x86_64
 
       - name: Run Binary (test)
         run: |
           cd "Mac Hardware Info"
-          .build/release/macinfo
-
-      - name: Upload CLI Binary
-        uses: actions/upload-artifact@v4
-        with:
-          name: macinfo-binary
-          path: Mac Hardware Info/.build/release/macinfo
+          
