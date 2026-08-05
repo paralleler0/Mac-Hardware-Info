@@ -1,1 +1,2 @@
-This is Macinfo, a port of Openbubbles-app/Mac-Hardware-Info for CLI!
+This is Macinfo, a port of Openbubbles-app/Mac-Hardware-Info for CLI!/
+wow people forked me cool
